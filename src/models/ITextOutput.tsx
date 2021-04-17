@@ -1,4 +1,4 @@
 export interface ITextOutput {
-    text?: String,
+    text: string,
 }
 // TODO: Implement correct data to present.
