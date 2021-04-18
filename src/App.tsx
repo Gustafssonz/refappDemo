@@ -16,28 +16,16 @@ function App() {
   const [data, setData] = useState("");
   const [numLetters, setLetters] = useState(Number);
   const [numWords, setWords] = useState(Number);
-  var noanswer: boolean = false;
 
 
   let result: { numWords: number; numLetters: number };
 
   const clickAlert = async () => {
-    console.log(data);
     await analyzeText(data).then( value => {
-
-      console.log("analyse", value)
       setLetters(value.numLetters);
       setWords(value.numWords);
     });
-    // setResult(result);
-
   }
-  // console.log(result2);
-
-  // const fetchData = async () => {
-  //   input = await analyzeText(testData);
-  // };
-  // fetchData();
 
   return (
     <div className="App">
