@@ -1,10 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { analyzeText } from './analysis'
-import { useState, useEffect } from 'react';
-import TextField from '@material-ui/core/TextField';
+import { useState } from 'react';
 import InputBox from 'components/InputBox';
-import OutputBox from 'components/OutputBox';
 
 
 interface IData {
@@ -27,16 +25,17 @@ function App() {
     });
   }
 
+  const handleChange = (e: any) => {
+    setData(e.target.value)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
         {numLetters === 0 ?
         <>
-          <TextField id="standard-basic" onChange={e => setData(e.target.value)}></TextField>
-			    <Button variant="contained" onClick={() => clickAlert()}>Submit</Button>
+          <InputBox handleClick={() => clickAlert()} handleChange={ (e) => handleChange(e)} ></InputBox>
         </>: <p>Your text consist of {numWords} words ({numLetters} letters)</p>
         }
-      </header>
     </div>
   );
 }
