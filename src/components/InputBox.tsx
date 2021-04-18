@@ -1,24 +1,39 @@
 import React, { useState }  from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import classes from '*.module.css';
+import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    inputBox: {
+		display: 'flex',
+    },
+	button: {
+		width: '30%'
+	  },
+	input: {
+		width: '50%'
+	},
+  }),
+);
 interface IInputBox {
 	handleClick: React.MouseEventHandler<HTMLButtonElement>;
 	handleChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   }
-// 'react-bootstrap/Card' dosen't seems to work?
+
 const InputBox: React.FC<IInputBox> = ({ handleClick, handleChange }) => {
+	// CSS
+	const classes = useStyles();
+
 	const [data, setData] = useState("");
 
-	// function handleClick(event: MouseEvent<HTMLButtonElement>) {
-	// 	event.preventDefault();
-	// 	alert(event.currentTarget.tagName); // alerts BUTTON
-	//   }
-
 	return (
-		<div>
-			<TextField id="standard-basic" onChange={handleChange} ></TextField>
-			<Button variant="contained" onClick={handleClick}>Submit</Button>
+		<div className={classes.inputBox}>
+			<TextField className={classes.input} onChange={handleChange} ></TextField>
+			<Button className={classes.button} variant="contained" onClick={handleClick}>Submit</Button>
 		</div>
+
 	);
 };
 export default InputBox;
