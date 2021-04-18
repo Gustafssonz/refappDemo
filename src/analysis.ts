@@ -11,6 +11,6 @@ export async function analyzeText(
       } catch (err) {
         reject(err);
       }
-    }, 10000);
+    }, 1000);
   });
 }

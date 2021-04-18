@@ -1,20 +1,24 @@
 import React from 'react';
 import { ITextOutput } from '../models/ITextOutput'
-import {IData} from '../models/IData'
-import {analyzeText } from '../analysis'
+// import { IData } from '../models/IData'
+// import { analyzeText } from '../analysis'
 // 'react-bootstrap/Card' dosen't seems to work?
 function OutputBox({ text }: ITextOutput) {
 
-    var data : IData;
+    // var data : IData = {
+    //     numWords:0,
+    //     numLetters:0
+    // };
 
-    const processDataAsycn = async () => {
-        let data = await analyzeText(text);
-        return data;
-      };
+    // const data: IData = async () => {
+    //     let data = await analyzeText(text);
+    //     return data;
+    // };
 
-        return (
-            <p> {data.numWords}, {data.numLetters}</p>
-        );
+    // const data: IData = await processDataAsycn();
+    return (
+        <p> {text}</p>
+    );
 
 };
 export default OutputBox;
