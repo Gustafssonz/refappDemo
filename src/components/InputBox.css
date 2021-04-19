@@ -1,0 +1,8 @@
+.inputbox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-content: flex-end;
+    align-items: flex-end;
+}
