@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { analyzeText } from './analysis'
 import { useState } from 'react';
 import InputBox from 'components/InputBox';
 import OutputBox from 'components/OutputBox';
 import IData from 'models/IData';
-import './App.css';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
@@ -22,7 +21,6 @@ function App() {
   const classes = useStyles();
 
   const dataTest: IData = { numLetters: 0, numWords: 0}
-
   const [data, setData] = useState("");
   const [results, setResults] = useState(dataTest);
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -31,7 +29,6 @@ function App() {
     setLoading(true);
     const value = await analyzeText(data);
     setLoading(false);
-    console.log(value)
     setResults(value);
   }
 
@@ -49,7 +46,7 @@ function App() {
   return (
     <div className={classes.app}>
       {results.numLetters === 0 ?
-        <InputBox handleClick={() => clickAlert()} handleChange={(e) => handleChange(e)} /> :
+        <InputBox handleClick={() => clickAlert()} handleChange={(e) => handleChange(e)} currentData={data} /> :
         <OutputBox data={results} />
       }
     </div>

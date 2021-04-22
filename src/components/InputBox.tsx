@@ -1,12 +1,11 @@
 import React, { useState }  from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import './InputBox.css';
 import { makeStyles } from '@material-ui/core';
-
 interface IInputBox {
 	handleClick: React.MouseEventHandler<HTMLButtonElement>;
 	handleChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+	currentData: string;
   }
   const useStyles = makeStyles(theme => ({
 	inputbox: {
@@ -30,15 +29,14 @@ interface IInputBox {
 	  width: '50%',
 	}
   }));
-const InputBox = ({ handleClick, handleChange }:IInputBox ) => {
+const InputBox = ({ handleClick, handleChange, currentData}:IInputBox ) => {
 	// const [data, setData] = useState("");
 	const classes = useStyles();
 
-
 	return (
 		<>
-			<TextField className={classes.inputbox} onChange={handleChange} ></TextField>
-			<Button className={classes.button} variant="contained" onClick={handleClick}>Submit</Button>
+			<TextField id="outlined-textarea" className={classes.inputbox} variant="outlined" placeholder="Text to analyze" multiline onChange={handleChange} ></TextField>
+			<Button disabled={currentData.length!<1} className={classes.button} variant="contained" color="default" onClick={handleClick}>Submit</Button>
 		</>
 	);
 };
