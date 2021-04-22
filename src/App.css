@@ -5,3 +5,8 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.classes {
+    font-size: 90px;
+    background-color: black;
+}

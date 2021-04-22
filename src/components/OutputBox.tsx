@@ -5,7 +5,7 @@ interface IOutputBox {
 	data: IData
 }
 
-const OutputBox: React.FC<IOutputBox> = ({ data }) => {
+const OutputBox = ({ data } :IOutputBox ) => {
     return (
         <Box  component="span" display="block">Your text consist of {data.numWords} words ({data.numLetters} letters)</Box>
     );
