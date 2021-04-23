@@ -1,26 +1,36 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { analyzeText } from './analysis'
 import { useState } from 'react';
 import InputBox from 'components/InputBox';
 import OutputBox from 'components/OutputBox';
 import IData from 'models/IData';
-import { CircularProgress, makeStyles } from '@material-ui/core';
+import { Card, CardContent, CircularProgress, makeStyles, Slide } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   app: {
     display: 'flex',
     alignContent: 'center',
     flexWrap: 'wrap',
-    flexDirection: 'column',
     justifyContent: 'center',
-    width: '100%'
+
+    '& .MuiCard-root': {
+    display: 'flex',
+    alig: 'center',
+    flexDirection: 'column',
+    minWidth: '50rem',
+    minHeight: '15rem',
+    alignItems: 'center',
+    justifyContent: 'center',
+    }
   },
 }));
 
 function App() {
   const classes = useStyles();
 
-  const dataTest: IData = { numLetters: 0, numWords: 0}
+
+  // Data
+  const dataTest: IData = { numLetters: 0, numWords: 0 }
   const [data, setData] = useState("");
   const [results, setResults] = useState(dataTest);
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -39,16 +49,20 @@ function App() {
   if (isLoading) {
     return (
       <div className={classes.app}>
-      <CircularProgress />
+        <Card className={classes.app}>
+            <CircularProgress />
+        </Card>
       </div>
     );
   }
   return (
     <div className={classes.app}>
-      {results.numLetters === 0 ?
-        <InputBox handleClick={() => clickAlert()} handleChange={(e) => handleChange(e)} currentData={data} /> :
-        <OutputBox data={results} />
-      }
+      <Card>
+        {results.numLetters === 0 ?
+          <InputBox handleClick={() => clickAlert()} handleChange={(e) => handleChange(e)} currentData={data} /> :
+          <OutputBox data={results} />
+        }
+      </Card>
     </div>
   );
 }

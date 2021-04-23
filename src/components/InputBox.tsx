@@ -9,11 +9,6 @@ interface IInputBox {
   }
   const useStyles = makeStyles(theme => ({
 	inputbox: {
-	  display: 'flex',
-	  alignItems: 'center',
-	  flexWrap: 'wrap',
-	  justifyContent: 'center',
-	  flexDirection: 'column',
 	  margin: theme.spacing(1),
 	  width: '80%',
 
@@ -35,7 +30,7 @@ const InputBox = ({ handleClick, handleChange, currentData}:IInputBox ) => {
 
 	return (
 		<>
-			<TextField id="outlined-textarea" className={classes.inputbox} variant="outlined" placeholder="Text to analyze" multiline onChange={handleChange} ></TextField>
+			<TextField className={classes.inputbox} variant="outlined" placeholder="Text to analyze" onChange={handleChange} ></TextField>
 			<Button disabled={currentData.length!<1} className={classes.button} variant="contained" color="default" onClick={handleClick}>Submit</Button>
 		</>
 	);
