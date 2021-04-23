@@ -4,7 +4,8 @@ import { useState } from 'react';
 import InputBox from 'components/InputBox';
 import OutputBox from 'components/OutputBox';
 import IData from 'models/IData';
-import { Card, CardContent, CircularProgress, makeStyles, Slide } from '@material-ui/core';
+import { Button, Card, CardContent, CircularProgress, createMuiTheme, CssBaseline, makeStyles, MuiThemeProvider, Slide } from '@material-ui/core';
+import CardComponent from 'components/CardComponent';
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -12,57 +13,22 @@ const useStyles = makeStyles(() => ({
     alignContent: 'center',
     flexWrap: 'wrap',
     justifyContent: 'center',
-
-    '& .MuiCard-root': {
-    display: 'flex',
-    alig: 'center',
-    flexDirection: 'column',
-    minWidth: '50rem',
-    minHeight: '15rem',
-    alignItems: 'center',
-    justifyContent: 'center',
-    }
+    color: '#fff',
+    background: 'linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB)',
+    backgroundSize: '300% 300%',
+    animation: 'Gradient 10s ease infinite',
+    height: '100vh',
   },
 }));
 
 function App() {
+
   const classes = useStyles();
 
-
-  // Data
-  const dataTest: IData = { numLetters: 0, numWords: 0 }
-  const [data, setData] = useState("");
-  const [results, setResults] = useState(dataTest);
-  const [isLoading, setLoading] = useState<boolean>(false);
-
-  const clickAlert = async () => {
-    setLoading(true);
-    const value = await analyzeText(data);
-    setLoading(false);
-    setResults(value);
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setData(event.target.value)
-  }
-
-  if (isLoading) {
-    return (
-      <div className={classes.app}>
-        <Card className={classes.app}>
-            <CircularProgress />
-        </Card>
-      </div>
-    );
-  }
   return (
+
     <div className={classes.app}>
-      <Card>
-        {results.numLetters === 0 ?
-          <InputBox handleClick={() => clickAlert()} handleChange={(e) => handleChange(e)} currentData={data} /> :
-          <OutputBox data={results} />
-        }
-      </Card>
+      <CardComponent />
     </div>
   );
 }
