@@ -25,12 +25,11 @@ interface IInputBox {
 	}
   }));
 const InputBox = ({ handleClick, handleChange, currentData}:IInputBox ) => {
-	// const [data, setData] = useState("");
 	const classes = useStyles();
 
 	return (
 		<>
-			<TextField className={classes.inputbox} variant="outlined" placeholder="Text to analyze" onChange={handleChange} ></TextField>
+			<TextField color="primary" className={classes.inputbox} variant="outlined" placeholder="Text to analyze" onChange={handleChange} ></TextField>
 			<Button disabled={currentData.length!<1} className={classes.button} variant="contained" color="default" onClick={handleClick}>Submit</Button>
 		</>
 	);

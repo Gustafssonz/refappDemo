@@ -4,7 +4,7 @@ import { useState } from 'react';
 import InputBox from 'components/InputBox';
 import OutputBox from 'components/OutputBox';
 import IData from 'models/IData';
-import { Button, Card, CardContent, CircularProgress, createMuiTheme, CssBaseline, makeStyles, MuiThemeProvider, Slide } from '@material-ui/core';
+import { Card, CircularProgress, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -29,13 +29,11 @@ const CardComponent = () => {
 
   const classes = useStyles();
 
-
   // Data
   const dataTest: IData = { numLetters: 0, numWords: 0 }
   const [data, setData] = useState("");
   const [results, setResults] = useState(dataTest);
   const [isLoading, setLoading] = useState<boolean>(false);
-
 
   const clickAlert = async () => {
     setLoading(true);
@@ -50,17 +48,14 @@ const CardComponent = () => {
 
   if (isLoading) {
     return (
-
       <div className={classes.app}>
         <Card className={classes.app}>
             <CircularProgress />
         </Card>
       </div>
-
     );
   }
   return (
-
     <div className={classes.app}>
       <Card>
         {results.numLetters === 0 ?

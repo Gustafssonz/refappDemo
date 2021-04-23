@@ -1,6 +1,5 @@
 import { Box } from '@material-ui/core';
 import IData from 'models/IData';
-import React from 'react';
 interface IOutputBox {
 	data: IData
 }
