@@ -1,35 +1,46 @@
-import React from 'react';
-import { analyzeText } from './analysis'
 import { useState } from 'react';
-import InputBox from 'components/InputBox';
-import OutputBox from 'components/OutputBox';
-import IData from 'models/IData';
-import { Button, Card, CardContent, CircularProgress, createMuiTheme, CssBaseline, makeStyles, MuiThemeProvider, Slide } from '@material-ui/core';
+import { createMuiTheme, CssBaseline, makeStyles, Switch, ThemeProvider, useTheme } from '@material-ui/core';
 import CardComponent from 'components/CardComponent';
+import { common } from '@material-ui/core/colors/';
 
-const useStyles = makeStyles(() => ({
-  app: {
-    display: 'flex',
-    alignContent: 'center',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    color: '#fff',
-    background: 'linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB)',
-    backgroundSize: '300% 300%',
-    animation: 'Gradient 10s ease infinite',
-    height: '100vh',
-  },
-}));
+// linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB)',
+
 
 function App() {
-
+  const [darkMode, setDarkMode] = useState(false);
+  const modeType = darkMode ? "dark" : 'light';
+  const modeBackground = darkMode ? '#cdcdcd' : "linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB)"
+  const themeDark = createMuiTheme({
+    palette: {
+      type: modeType,
+    }
+  });
+  const useStyles = makeStyles(() => ({
+    app: {
+      display: 'flex',
+      justifyContent: 'center',
+      color: '#fff',
+      background: modeBackground,
+      backgroundSize: '300% 300%',
+      animation: 'Gradient 10s ease infinite',
+      height: '100vh',
+    },
+  }));
   const classes = useStyles();
 
-  return (
+  const handleThemeChange = () => {
+    setDarkMode(!darkMode);
+  };
 
-    <div className={classes.app}>
-      <CardComponent />
-    </div>
+  return (
+    <ThemeProvider theme={themeDark}>
+      <CssBaseline />
+      <div className={classes.app}>
+        <Switch color="default" checked={darkMode} onChange={handleThemeChange} />
+        <CardComponent />
+      </div>
+    </ThemeProvider>
+
   );
 }
 

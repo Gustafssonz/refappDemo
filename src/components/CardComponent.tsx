@@ -35,7 +35,6 @@ const CardComponent = () => {
   const [data, setData] = useState("");
   const [results, setResults] = useState(dataTest);
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [light, setLight] = React.useState(true);
 
 
   const clickAlert = async () => {
